@@ -1,4 +1,4 @@
-import { Header, Navbar } from "../../components";
+import { Featured, Header, Navbar } from "../../components";
 import "./home.scss";
 
 const Home = () => {
@@ -6,6 +6,9 @@ const Home = () => {
     <div>
       <Navbar />
       <Header />
+      <div className="homeContainer">
+        <Featured />
+      </div>
     </div>
   );
 };
