@@ -1,7 +1,9 @@
 import {
   Featured,
   FeaturedProperties,
+  Footer,
   Header,
+  MailList,
   Navbar,
   PropertyList,
 } from "../../components";
@@ -18,6 +20,8 @@ const Home = () => {
         <PropertyList />
         <h1 className="homeTitle">Homes guests love</h1>
         <FeaturedProperties />
+        <MailList />
+        <Footer />
       </div>
     </div>
   );
