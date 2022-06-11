@@ -9,10 +9,14 @@
 .headerContainer {
   width: 100%;
   max-width: 1024px;
-  margin: 20px 0px 100px 0px;
+  margin: 20px 0px 75px 0px;
 
   &.listMode {
     margin: 20px 0px 0px;
+
+    .headerList {
+      margin-bottom: 25px;
+    }
   }
 }
 

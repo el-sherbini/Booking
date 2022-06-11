@@ -6,4 +6,6 @@ export { default as FeaturedProperties } from "./featuredProperties/FeaturedProp
 export { default as MailList } from "./mailList/MailList";
 export { default as ListSearch } from "./listSearch/ListSearch";
 export { default as SearchItem } from "./searchItem/SearchItem";
+export { default as HotelData } from "./hotelData/HotelData";
+export { default as Slider } from "./slider/Slider";
 export { default as Footer } from "./footer/Footer";
