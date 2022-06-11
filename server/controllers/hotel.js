@@ -36,7 +36,7 @@ export const deleteHotel = async (req, res, next) => {
   }
 };
 
-// Get specific hotel
+// Get hotel by id
 export const getHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
