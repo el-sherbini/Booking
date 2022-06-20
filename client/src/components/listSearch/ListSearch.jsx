@@ -5,11 +5,11 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 
-const ListSearch = () => {
-  const location = useLocation();
-  const [destination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+const ListSearch = ({ destination, setMin, setMax, fetchData }) => {
   const [openDate, setOpenDate] = useState(false);
+
+  const location = useLocation();
+  const [date, setDate] = useState(location.state.date);
   const [options] = useState(location.state.options);
 
   const ListOptionItem = (content, min, placeholder) => {
@@ -26,13 +26,17 @@ const ListSearch = () => {
     );
   };
 
+  const handleClick = () => {
+    fetchData();
+  };
+
   return (
     <div className="listSearch">
       <h1 className="lsTitle">Search</h1>
 
       <div className="lsItem">
         <label>Destination</label>
-        <input value={destination} type="text" />
+        <input defaultValue={destination} type="text" />
       </div>
 
       <div className="lsItem">
@@ -57,17 +61,26 @@ const ListSearch = () => {
         <label>Options</label>
 
         <div className="lsOptions">
-          {ListOptionItem(
-            <code>
+          <div className="lsOptionItem">
+            <span className="lsOptionText">
               Min price <small>per night</small>
-            </code>
-          )}
-
-          {ListOptionItem(
-            <code>
-              Max price <small> per night</small>
-            </code>
-          )}
+            </span>
+            <input
+              type="number"
+              onChange={(e) => setMin(e.target.value)}
+              className="lsOptionInput"
+            />
+          </div>
+          <div className="lsOptionItem">
+            <span className="lsOptionText">
+              Max price <small>per night</small>
+            </span>
+            <input
+              type="number"
+              onChange={(e) => setMax(e.target.value)}
+              className="lsOptionInput"
+            />
+          </div>
 
           {ListOptionItem("Adult", 1, options.adult)}
           {ListOptionItem("Children", 0, options.children)}
@@ -75,7 +88,7 @@ const ListSearch = () => {
         </div>
       </div>
 
-      <button>Search</button>
+      <button onClick={handleClick}>Search</button>
     </div>
   );
 };
