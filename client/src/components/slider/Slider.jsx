@@ -6,7 +6,7 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Slider = ({ slideNum, photos, setOpen, setSlideNum }) => {
+const Slider = ({ slideNum, setOpen, setSlideNum, data }) => {
   const handleMove = (direction) => {
     let newSlideNum;
 
@@ -32,7 +32,7 @@ const Slider = ({ slideNum, photos, setOpen, setSlideNum }) => {
         onClick={() => handleMove("l")}
       />
       <div className="sliderWrapper">
-        <img src={photos[slideNum].src} alt="" className="sliderImg" />
+        <img src={data.photos[slideNum]} alt="" className="sliderImg" />
       </div>
       <FontAwesomeIcon
         icon={faCircleArrowRight}
