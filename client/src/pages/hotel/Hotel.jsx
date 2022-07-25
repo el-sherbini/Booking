@@ -36,7 +36,12 @@ const Hotel = () => {
               data={data}
             />
           )}
-          <HotelData setOpen={setOpen} setSlideNum={setSlideNum} data={data} />
+          <HotelData
+            setOpen={setOpen}
+            setSlideNum={setSlideNum}
+            data={data}
+            id={id}
+          />
           <MailList />
           <Footer />
         </div>

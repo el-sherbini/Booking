@@ -8,4 +8,5 @@ export { default as ListSearch } from "./listSearch/ListSearch";
 export { default as SearchItem } from "./searchItem/SearchItem";
 export { default as HotelData } from "./hotelData/HotelData";
 export { default as Slider } from "./slider/Slider";
+export { default as Reserve } from "./reserve/Reserve";
 export { default as Footer } from "./footer/Footer";

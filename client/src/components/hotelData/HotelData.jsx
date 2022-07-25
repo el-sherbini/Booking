@@ -1,10 +1,15 @@
 import "./hotelData.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../reserve/Reserve";
 
-const HotelData = ({ setOpen, setSlideNum, data }) => {
+const HotelData = ({ setOpen, setSlideNum, data, id }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   const handleOpen = (i) => {
     setSlideNum(i);
     setOpen(true);
@@ -20,6 +25,17 @@ const HotelData = ({ setOpen, setSlideNum, data }) => {
   }
 
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="hotelWrapper">
@@ -62,9 +78,10 @@ const HotelData = ({ setOpen, setSlideNum, data }) => {
           <h2>
             <b>${days * data.cheapestPrice * options.room}</b> ({days} nights)
           </h2>
-          <button>Reserve or Book Now!</button>
+          <button onClick={handleClick}>Reserve or Book Now!</button>
         </div>
       </div>
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };
