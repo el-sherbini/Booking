@@ -1,0 +1,71 @@
+@import "./main.scss";
+
+.app.dark {
+  background-color: $dark-grey-color;
+  color: rgb(156, 156, 156);
+
+  .chartGrid {
+    stroke: rgba($grey-color, 0.219);
+  }
+
+  .dataTable {
+    background-color: $dark-grey-color;
+
+    .tableCell {
+      color: $grey-color;
+    }
+  }
+
+  .navbar {
+    color: $grey-color;
+    border-color: #333;
+
+    .search {
+      border-color: $grey-color;
+    }
+  }
+
+  .sidebar {
+    background-color: $dark-grey-color;
+    border-color: #333;
+
+    .top {
+      .logo {
+        color: $grey-color;
+      }
+    }
+    hr {
+      border-color: #333;
+    }
+
+    ul {
+      li {
+        &:hover {
+          background-color: #333;
+        }
+
+        .icon {
+          color: $grey-color;
+        }
+      }
+    }
+  }
+
+  .dataGridView {
+    .dataGrid {
+      color: $grey-color;
+      border: none;
+
+      .viewButton,
+      .deleteButton,
+      .cellWithStatus {
+        color: $grey-color;
+        border: none;
+      }
+    }
+  }
+
+  input {
+    background-color: transparent;
+  }
+}
