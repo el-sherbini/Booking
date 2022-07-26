@@ -1,13 +1,13 @@
 import "./list.scss";
 import { Sidebar, Navbar, DataGridView } from "../../components";
 
-const List = () => {
+const List = ({ columns }) => {
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <DataGridView />
+        <DataGridView columns={columns} />
       </div>
     </div>
   );

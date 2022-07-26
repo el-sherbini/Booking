@@ -1,14 +1,25 @@
-import "./datagridview.scss";
+import "./dataGridView.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../dataGridSource";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import axios from "axios";
 
-const DataGridView = () => {
-  const [data, setData] = useState(userRows);
+const DataGridView = ({ columns }) => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const [list, setList] = useState();
+  const { data } = useFetch(`/${path}`);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    setList(data);
+  }, [data]);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/${path}/${id}`);
+      setList(list.filter((item) => item._id !== id));
+    } catch (err) {}
   };
 
   const actionColumn = [
@@ -19,12 +30,9 @@ const DataGridView = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             >
               Delete
             </div>
@@ -37,18 +45,19 @@ const DataGridView = () => {
   return (
     <div className="dataGridView">
       <div className="dataGridTitle">
-        Add New User
-        <Link to="/users/new" className="link">
+        {path}
+        <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="dataGrid"
-        rows={data}
-        columns={userColumns.concat(actionColumn)}
+        rows={list ? list : []}
+        columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        getRowId={(row) => row._id}
       />
     </div>
   );
