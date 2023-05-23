@@ -1,7 +1,6 @@
 # Booking
 
 > Booking is a reservation MERN Stack application, built with MongoDB, Express.js, React.js, Node.js, ContextAPI, Material UI.
-> Live demo [_here_](https://booking-reservation.netlify.app/).
 
 ## Installation and Setup Instructions
 
